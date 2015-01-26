@@ -1,0 +1,268 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"s-rep",
+				"s-repeat-hidden"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/senica/Documents/Projects/studentloans"
+	],
+	"file_history":
+	[
+		"/Users/senica/Documents/Projects/forpresident/views/home/index.ejs",
+		"/Users/senica/Documents/Projects/forpresident/assets/js/home.coffee",
+		"/Users/senica/Documents/Projects/forpresident/assets/styles/home.styl",
+		"/Users/senica/Documents/Projects/forpresident/api/models/Vote.coffee",
+		"/Users/senica/Documents/Projects/forpresident/api/controllers/VoteController.coffee",
+		"/Users/senica/Documents/Projects/forpresident/assets/js/dependencies/bootstrap.coffee",
+		"/Users/senica/Documents/Projects/forpresident/tasks/pipeline.js",
+		"/Users/senica/Documents/Projects/forpresident/assets/js/dependencies/angular-cookies.js",
+		"/Users/senica/Documents/Projects/forpresident/assets/styles/importer.styl",
+		"/Users/senica/Documents/Projects/forpresident/config/models.js",
+		"/Users/senica/Documents/Projects/forpresident/api/controllers/UserController.coffee",
+		"/Users/senica/Documents/Projects/forpresident/api/models/User.coffee",
+		"/Users/senica/Documents/Projects/forpresident/views/layout.ejs",
+		"/Users/senica/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/senica/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/senica/Documents/Projects/forpresident/api/controllers/HomeController.coffee",
+		"/Users/senica/Documents/Projects/forpresident/tasks/config/coffee.js",
+		"/Users/senica/Documents/Projects/forpresident/.tmp/public/js/dependencies/bootstrap.js",
+		"/Users/senica/Documents/Projects/forpresident/assets/js/dependencies/angular.js",
+		"/Users/senica/Documents/Projects/forpresident/assets/js/dependencies/underscore.js",
+		"/Users/senica/Documents/Projects/forpresident/assets/js/dependencies/backbone.js",
+		"/Users/senica/Documents/Projects/forpresident/views/footer.ejs",
+		"/Users/senica/Documents/Projects/forpresident/assets/images/tim_allen.svg",
+		"/Users/senica/Documents/Projects/forpresident/views/header/index.ejs",
+		"/Users/senica/Documents/Projects/forpresident/views/home-parallax.ejs",
+		"/Users/senica/Documents/Projects/forpresident/views/full-width.ejs",
+		"/Users/senica/Documents/Projects/forpresident/views/faq.ejs",
+		"/Users/senica/Documents/Projects/forpresident/views/homepage.ejs",
+		"/Users/senica/Documents/Projects/forpresident/config/routes.js",
+		"/Users/senica/Documents/Projects/forpresident/config/views.js",
+		"/Users/senica/Documents/Projects/forpresident/assets/js/loader.coffee",
+		"/Users/senica/Documents/Projects/forpresident/assets/js/dependencies/us.widgets.js",
+		"/Users/senica/Documents/Projects/forpresident/.gitignore",
+		"/Users/senica/Documents/Projects/peddler/hacker/hacker/views/homepage.ejs",
+		"/Users/senica/Documents/Projects/forpresident/assets/theme_styles/rs-settings.css",
+		"/Users/senica/Documents/Projects/forpresident/assets/theme_styles/style.css",
+		"/Users/senica/Documents/Projects/forpresident/views/home-parallax.html",
+		"/Users/senica/Documents/Projects/forpresident/tasks/config/stylus.js",
+		"/Users/senica/Documents/Projects/forpresident/assets/theme_styles/font-awesome.css",
+		"/Users/senica/Documents/Projects/forpresident/theme documentation/Impreza_documentation/index.html",
+		"/Users/senica/Documents/Projects/forpresident/assets/theme_styles/README.md",
+		"/Users/senica/Documents/Projects/forpresident/tasks/config/copy.js",
+		"/Users/senica/Documents/Projects/forpresident/assets/styles/style.css",
+		"/Users/senica/Documents/Projects/forpresident/tasks/register/syncAssets.js",
+		"/Users/senica/Documents/Projects/forpresident/tasks/register/compileAssets.js",
+		"/Users/senica/Documents/Projects/forpresident/views/404.ejs",
+		"/Users/senica/Documents/Projects/forpresident/Impreza_HTML/favicon.ico",
+		"/Users/senica/Sites/cairo covenant school/site backup/backup-10.10.2012_06-17-07_senica10/homedir 2/public_html/wp-content/plugins/contact-form-7/includes/classes.php",
+		"/Users/senica/Desktop/classes.php",
+		"/Users/senica/Documents/Projects/srender/Gruntfile.coffee",
+		"/Users/senica/Documents/Projects/DinnerWire/rezku-backend/src/assets/js/srender.coffee",
+		"/Users/senica/Documents/Projects/srender/tests/data.coffee",
+		"/Users/senica/Documents/Projects/srender/tests/test-data.js",
+		"/Users/senica/Documents/Projects/srender/src/qunit.css",
+		"/Users/senica/Documents/Projects/srender/src/qunit.js",
+		"/Users/senica/Documents/Projects/srender/index.html",
+		"/Users/senica/Documents/Projects/srender/tests/tests.coffee",
+		"/Users/senica/Documents/Projects/srender/tests/srender.coffee",
+		"/Users/senica/Documents/Projects/srender/_SpecRunner.html",
+		"/Users/senica/Documents/Projects/DinnerWire/rezku-backend/Gruntfile.coffee",
+		"/Users/senica/Documents/Projects/srender/src/index.html",
+		"/Users/senica/Documents/Projects/srender/srender.js",
+		"/Users/senica/Documents/Projects/srender/src/srender.coffee",
+		"/Users/senica/Documents/Projects/srender/src/jquery-2.1.1.js",
+		"/Users/senica/Documents/Projects/coop/coop/tasks/config/coffee.js",
+		"/Users/senica/Documents/Projects/coop/coop/.bowerrc",
+		"/Users/senica/Documents/Projects/coop/coop/tasks/config/copy.js",
+		"/Users/senica/Documents/Projects/coop/coop/README.md",
+		"/Users/senica/Documents/Projects/coop/coop/tasks/pipeline.js",
+		"/Users/senica/Documents/Projects/coop/coop/.gitignore",
+		"/Users/senica/Documents/Projects/coop/coop/assets/vendor/bower/bower.json",
+		"/Users/senica/Documents/Projects/coop/coop/assets/vendor/jquery/bower.json",
+		"/Users/senica/Documents/Projects/coop/coop/assets/vendor/jquery/dist/jquery.js",
+		"/Users/senica/Documents/Projects/coop/coop/package.json",
+		"/Users/senica/Documents/Projects/coop/coop/api/controllers/ProjectController.coffee",
+		"/Users/senica/Documents/Projects/coop/coop/views/project/create.ejs",
+		"/Users/senica/Documents/Projects/coop/coop/bower.json",
+		"/Users/senica/Documents/Projects/coop/coop/tasks/config/bower.js"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/senica/Documents/Projects/forpresident/assets/theme_styles",
+			"/Users/senica/Documents/Projects/forpresident/assets/js/dependencies",
+			"/Users/senica/Documents/Projects/forpresident/assets/theme_styles",
+			"/Users/senica/Documents/Projects/forpresident/tasks",
+			"/Users/senica/Documents/Projects/coop/coop/tasks/config",
+			"/Users/senica/Documents/Projects/coop/coop/tasks",
+			"/Users/senica/Documents/Projects/coop",
+			"/Users/senica/Documents/Projects/coop/coop/tasks",
+			"/Users/senica/Documents/Projects/coop"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"80",
+			"html",
+			"jQuery",
+			"../assets",
+			"loader.gif",
+			"img/",
+			"\"></script>",
+			"/fonts",
+			"less",
+			"senica",
+			"injector",
+			"vendor",
+			"bower",
+			"bower_components",
+			"vendor",
+			"bower"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"images/",
+			"',"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "studentloans.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 210.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

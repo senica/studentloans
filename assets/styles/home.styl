@@ -1,0 +1,182 @@
+#give
+	color pink
+	background grey1
+	padding 20px
+	text-align center
+
+	.give-prompt
+		font-size 30px
+
+		&:before
+			padding-right 10px
+
+	#info
+		padding 0 0 20px 0
+
+		&> div
+			display inline-block
+			text-align left
+			padding 0px 15px
+			vertical-align top
+
+			label
+				font-size 14px
+
+			input
+				padding 5px 15px
+				font-size 20px
+				border-radius 5px
+				border 1px solid pink
+
+				&:focus
+					outline 0
+					box-shadow 0px 0px 3px 2px pink
+
+	#thanks
+		font-family: 'Lobster', cursive;
+
+#reporter
+	min-height 20px
+	background light_blue
+	padding 20px
+	color white
+	white-space nowrap
+	font-size 25px
+	text-align center
+	box-shadow inset 0px 0px 10px black
+	margin 0 -10px
+
+	&> div
+		display inline-block
+		vertical-align middle
+		text-align center
+		width 60%
+
+	#bar-wrapper
+		height 30px
+		border-radius 15px
+		background white
+		position relative
+
+		#bar
+			background green
+			position absolute
+			right 0px
+			top 0px
+			height 30px
+			width 50%
+			border-radius 0px 15px 15px 0
+			transition width 0.5s ease
+
+			#indicator
+				position absolute
+				left 0px
+				top 47px
+				background dark_green
+				font-size 14px
+				padding 5px
+				border-radius 5px
+
+#wall
+	text-align center
+	padding 50px 10px
+
+	.item
+		display inline-block
+		padding 10px
+		border 1px solid dark_pink
+		box-shadow 2px 2px 2px dark_grey
+		border-radius 5px
+		margin 5px
+		background pink
+		color white
+		text-align center
+		width 100px
+		transition width 0.5s
+
+		&:hover
+			width 115px
+
+		.thanks
+			font-family: 'Lobster', cursive
+			font-size 14px
+
+#photos
+	background dark_grey
+	white-space nowrap
+	overflow hidden
+	margin-left -50px
+	box-shadow inset 0px 0px 10px #000
+
+	.photo
+		height 100px
+		width 100px
+		border-radius 50%
+		background url('../images/sprite.jpg')
+		display inline-block
+		margin 15px 5px
+		border 2px solid grey1
+		
+
+	&:hover
+		.photo
+			opacity 0.5
+
+			&:hover
+				opacity 1.0
+
+#message
+	font-size 20px
+	color black
+	padding 50px
+	line-height 34px
+	text-indent 20px
+
+	.decoration
+		background url('../images/decoration.svg') no-repeat
+		height 100px
+		background-size 50% 100px
+		background-position 50%
+		padding 30px
+
+#cool
+	padding 50px 80px
+	background grey1
+	box-shadow inset 0px 9px 10px grey2
+	margin 0px -10px
+
+	h1
+		font-family: 'Lobster', cursive
+
+	a
+		text-decoration none
+		color dark_grey
+		text-align center
+		display inline-block
+
+	#comment-table
+		display inline-block
+		vertical-align top
+		padding 0px 50px
+
+		td
+			&:first-child
+				text-align right
+			&:last-child
+				padding 10px 20px
+
+			input
+				padding 10px
+				border-radius 5px
+				border 1px solid grey2
+				width 400px
+
+#footer
+	background black
+	text-align center
+	padding 10px
+	color white
+
+
+
+

@@ -1,0 +1,110 @@
+<div ng-controller="AnnihilateCtrl">
+    <div id="header">
+    </div>
+    <div id="give">
+        <form name="give" novalidate
+        ng-if="!thanks"
+        ng-submit="stripe($event, give.$valid)">
+            <h1>
+                Yes! I want to help you annihilate your student loans!
+            </h1>
+            <div id="info">
+                <div>
+                    <label>Display Name (will be shown)</label><br />
+                    <input type="text" ng-model="$parent.name" name="name" select required />
+                    <div class="error"
+                    ng-show="give.$submitted && give.name.$error.required">
+                        We have to thank somebody.
+                    </div>
+                </div>
+                <div>
+                    <label>Amount to give</label><br />
+                    <input type="number" step="any" ng-model="$parent.amount"
+                    name="amount" value="100.00" select required />
+                    <div class="error"
+                    ng-show="give.$submitted && (give.amount.$error.required ||
+                    give.amount.$error.number)">
+                        Please enter a dollar amount.
+                    </div>
+                </div>
+            </div>
+            <button class="give-prompt fa fa-bomb" type="submit">
+                Annihilate!
+            </button>
+        </form>
+        <h1 ng-if="thanks" id="thanks">Thank you so much for your love and generosity. You have helped relieve a great burden from us today!</h1>
+    </div>
+    <div id="reporter">
+        ${{total}}
+        <div id="bar-wrapper">
+            <div id="bar" ng-style="barStyle()">
+                <div id="indicator" class="arrow-box" ng-style="indicatorStyle()">
+                    ${{current_due}} left to go!
+                </div>
+            </div>
+        </div>
+        ${{end}}
+    </div>
+    <div id="wall">
+        <div class="item" ng-repeat="contrib in contributors | filter:{amount: '!null'}">
+            <div class="thanks">Thank you</div>
+            <div>{{contrib.display_name || 'Anonymous'}}</div>
+            <div>
+                <i class="fa"
+                ng-class="[contrib.amount < 75 ? 'fa-star' : null, contrib.amount >= 75 ? 'fa-trophy' : null]"
+                ng-repeat="i in range(contrib.amount)"></i>
+            </div>
+        </div>
+    </div>
+    <div id="photos">
+        <div class="photo"
+        ng-repeat="photo in photos"
+        ng-style="{'background-position': ($index % 12) * 100+'px 0px'}"></div>
+    </div>
+    <div id="message">
+        <div class="decoration"></div>
+        <p>
+        Why are we doing this? A lot of people have student loans. What makes us so special? Well, I'm not sure how to answer that. I don't find us to be particularly special and I couldn't give you any persuasive argument as to why to give to us.
+        </p><p>
+        All I can do is simply ask, and so I'm humbly asking for help. We live in a society that is often afraid to ask for help. To reach out to the people in our lives and say, "Hey, I need...", you fill in the blanks. There is no shame in asking. We've all needed help. The question is, "Are you strong enough to put it out there?".
+        </p><p>
+        I want to be clear. We are not down and out. We aren't out of work. We are not on the streets starving. Quite the opposite. Personally, I've never been happier in my life. We have been blessed tremendously with an awesome relationship. We are helping others in their's. We are getting out of debt. Life is great!
+        </p><p>
+        To others, you may question our tactics as a little unorthodox. But that's okay. You can talk about us :). It brings us great joy to challenge your thinking on life.
+        </p><p>
+        Don't give because you pity us or feel pressured to do so. Give if you want to and can afford it. Certainly don't go into debt to help us out of ours.
+        </p><p>
+        If we never receive a penny through this site, my sincere hope is that it helps someone consider what is means to graduate with $110,000.00 of student loan debt. For us it means an $1,100.00 a month payment that we will pay over the next 10 years. It's a lot. I don't know what the answer is for those that can't get financial aid and want their degree, but I hope is starts a conversation in our society about how to remedy this over-bearing burden on our graduates.
+        </p>
+        <div class="decoration"></div>
+    </div>
+    <div id="cool">
+        <h1>Cool Stuff...</h1>
+        <p>
+        If you are struggling in debt or know of a need in your community but don't know how to organize the people to meet it, here's a link that might help. Also, if you think this site could help you in your financial needs if your story was on it, shoot us a message and let's get in touch!
+        </p>
+        <div>
+            <a href="http://commonchange.com" alt="common change" class="commonchange" target="_blank">
+                <img src="/images/commonchange.png" />
+                <div>Common Change</div>
+            </a>
+            <table id="comment-table">
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" /></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="text" /></td>
+                </tr>
+                <tr>
+                    <td>Comment</td>
+                    <td><input type="text" /></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="footer">
+        &copy; 2015 Copyright Senica Gonzalez & Dr. Amy Carrillo
+    </div>
+</div>

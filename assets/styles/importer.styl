@@ -1,0 +1,80 @@
+/**
+ * importer.less
+ *
+ * By default, new Sails projects are configured to compile this file
+ * from LESS to CSS.  Unlike CSS files, LESS files are not compiled and
+ * included automatically unless they are imported below.
+ *
+ * The LESS files imported below are compiled and included in the order
+ * they are listed.  Mixins, variables, etc. should be imported first
+ * so that they can be accessed by subsequent LESS stylesheets.
+ *
+ * (Just like the rest of the asset pipeline bundled in Sails, you can
+ * always omit, customize, or replace this behavior with SASS, SCSS,
+ * or any other Grunt tasks you like.)
+ */
+
+@import url('//fonts.googleapis.com/css?family=Open+Sans:400,700')
+@import url('http://fonts.googleapis.com/css?family=Lobster')
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
+@require "normalize.css"
+
+white = #FFFFFF
+dark_grey = #666666
+pink = #D13A7A
+dark_pink = #511730
+grey1 = #FAFAFA
+grey2 = #CCCCCC
+dark_blue = #1E7484
+light_blue = #1C899E
+yellow = #D9CB52
+green = #3AD141
+dark_green = #0A8410
+black = #444444
+
+body
+	font-family: 'Open Sans', sans-serif;
+
+button
+	padding 15px
+	border-radius 5px
+	background white
+	border 1px solid pink
+	transition background-color 0.5s ease
+
+	&:hover
+		background pink
+		color white
+
+	&:focus
+		outline 0
+
+.arrow-box
+	position relative
+	background dark_green
+	border 2px solid white
+
+	&:after
+	&:before
+		bottom 100%
+		left 50%
+		border solid transparent
+		content " "
+		height 0
+		width 0
+		position absolute
+		pointer-events none
+
+	&:after
+		border-color: rgba(0, 0, 0, 0)
+		border-bottom-color: dark_green
+		border-width: 15px
+		margin-left: -15px
+
+	&:before
+		border-color: rgba(0, 0, 0, 0)
+		border-bottom-color: white
+		border-width: 17px
+		margin-left: -17px
+
+@import "home"
