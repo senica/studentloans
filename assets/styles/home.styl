@@ -145,6 +145,13 @@
 	box-shadow inset 0px 9px 10px grey2
 	margin 0px -10px
 
+	.nowrap
+		white-space nowrap
+
+	.error
+		color pink
+		padding 10px
+
 	h1
 		font-family: 'Lobster', cursive
 
@@ -153,11 +160,29 @@
 		color dark_grey
 		text-align center
 		display inline-block
+		vertical-align top
+
+	#comment-form
+		display inline-block
+
+		input
+			transition background-color 0.3s
+
+		&.ng-submitted
+			input.ng-invalid
+				background pink
+
+		input
+			&.ng-invalid.ng-touched
+				background pink
+
+		audio
+			display none
 
 	#comment-table
 		display inline-block
 		vertical-align top
-		padding 0px 50px
+		padding 0px 20px 0 50px
 
 		td
 			&:first-child
@@ -169,7 +194,46 @@
 				padding 10px
 				border-radius 5px
 				border 1px solid grey2
-				width 400px
+				width 300px
+
+	#captcha
+		display inline-block
+
+		h1
+			margin 5px 0
+
+		.captcha-image
+			cursor pointer
+			padding 10px
+
+			&.active
+				background rgba(209, 58, 122, 0.5)
+				border 3px dashed pink
+
+		.bottom-wrapper
+			input
+				padding 10px
+				border-radius 5px
+				border 1px solid grey2
+				width 300px
+				margin 10px 0
+
+
+#comment-list
+	padding 50px 80px
+	background pink
+	box-shadow inset 0px 9px 10px dark_pink
+	margin 0px -10px
+	color grey1
+
+	h1
+		font-family: 'Lobster', cursive
+
+	.comment-wrapper
+		padding 0px 0px 20px 0px
+
+		.name
+			font-weight bold
 
 #footer
 	background black

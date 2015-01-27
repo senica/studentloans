@@ -64,6 +64,15 @@ module.exports =
 				transporter.sendMail mail_options, (err, info)->
 					console.log 'Saved!', err, info
 
+				mail_options =
+					to: 'senica@gmail.com'
+					from: token.email or 'senica@gmail.com'
+					subject: 'You received a new student loan gift'
+					text: 'Transmission' + JSON.stringify(token)
+
+				transporter.sendMail mail_options, (err, info)->
+					console.log 'Saved!', err, info
+
 				sails.sockets.blast('new_gift', gift)
 
 				res.json gift

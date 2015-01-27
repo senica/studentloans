@@ -83,25 +83,83 @@
         <p>
         If you are struggling in debt or know of a need in your community but don't know how to organize the people to meet it, here's a link that might help. Also, if you think this site could help you in your financial needs if your story was on it, shoot us a message and let's get in touch!
         </p>
-        <div>
+        <div class="nowrap">
             <a href="http://commonchange.com" alt="common change" class="commonchange" target="_blank">
                 <img src="/images/commonchange.png" />
                 <div>Common Change</div>
             </a>
-            <table id="comment-table">
-                <tr>
-                    <td>Name</td>
-                    <td><input type="text" /></td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td><input type="text" /></td>
-                </tr>
-                <tr>
-                    <td>Comment</td>
-                    <td><input type="text" /></td>
-                </tr>
-            </table>
+            <form id="comment-form" name="commentForm" novalidate
+            ng-submit="postComment($event, commentForm.$valid)">
+                <table id="comment-table">
+                    <tr>
+                        <td>Name</td>
+                        <td><input type="text"
+                        ng-model="comment.name" name="name" required /></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><input type="email"
+                        ng-model="comment.email" name="email" required /></td>
+                    </tr>
+                    <tr>
+                        <td>Comment</td>
+                        <td><input type="text"
+                        ng-model="comment.comment" name="comment" required minLength="5"/>
+                        <div ng-if="commentForm.comment.$touched && commentForm.comment.$error.minlength">Comment must be at least 5 characters</div></td>
+                    </tr>
+                </table>
+                <div id="captcha">
+                    <div class="spinner" ng-if="!captcha">Loading Captcha</div>
+                    <div ng-if="captcha">
+                        <div>
+                            <h1 ng-show="captcha.src != 'audio'">
+                                Select the {{captcha.imageName}}
+                            </h1>
+                            <h1 ng-show="captcha.src == 'audio'">
+                                Answer the question
+                            </h1>
+                        </div>
+                        <div class="bottom-wrapper">
+                            <div ng-show="captcha.src != 'audio'">
+                                <div>
+                                    <img class="captcha-image"
+                                    ng-repeat="image in captcha.values"
+                                    ng-src="/comment/image?id={{$index}}"
+                                    ng-click="captcha.answer = image"
+                                    ng-class="[captcha.answer === image ? 'active' : null]" />
+                                </div>
+                            </div>
+                            <div ng-show="captcha.src == 'audio'">
+                                
+                                <input type="text" ng-model="captcha.answer" />
+                                <audio id="captchaAudio" loop>
+                                    <source ng-src="/comment/audio" type="audio/mpeg">
+                                    You browser does not support audio
+                                </audio>
+                            </div>
+                            <div class="error" ng-if="captcha.error">Please answer the captcha correclty.</div>
+                            <div class="error" ng-if="commentForm.error">Hmmm, something's not right.</div>
+                            <div>
+                                <button class="fa fa-refresh"
+                                ng-click="getCaptcha()"></button>
+                                <button class="fa fa-volume-up"
+                                ng-click="playCaptcha()"></button>
+                                <button class="fa fa-paper-plane"
+                                ng-disabled="commentForm.sending"> {{commentForm.sending ? 'Sending...' : 'Send'}}</button>
+                            </div>
+                            <div>(posted below)</div>
+                            <div ng-if="commentForm.thanks">Thank you for your comment!</div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="comment-list" ng-if="comments.length">
+        <h1>Your Opinion Matters...</h1>
+        <div ng-repeat="comment in comments" class="comment-wrapper">
+            <div class="name">{{comment.name}} says:</div> 
+            <div class="comment">{{comment.comment}}</div>           
         </div>
     </div>
     <div id="footer">

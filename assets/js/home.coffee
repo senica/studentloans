@@ -51,6 +51,12 @@ studentLoans.controller 'AnnihilateCtrl', ['$scope', '$element', '$http'
 			$scope.contributors = data.rows or []
 	$scope.get_contributors()
 
+	# When a new gift is added
+	io.socket.on 'new_gift', (msg)->
+		$scope.safeApply ->
+			$scope.current_due -= parseFloat(msg.amount)
+			$scope.contributors.unshift msg
+
 	$scope.stripe = ($event, valid)->
 		$event.preventDefault()
 		if not valid
@@ -92,14 +98,85 @@ studentLoans.controller 'AnnihilateCtrl', ['$scope', '$element', '$http'
 			range.push(3)
 		range
 
-	io.socket.on 'new_gift', (msg)->
-		$scope.safeApply ->
-			$scope.current_due -= parseFloat(msg.amount)
-			$scope.contributors.unshift msg
-
 	$scope.photos = []
 	for i in [0..100]
 		$scope.photos.push i
 
+	$scope.comment =
+		name: null
+		email: null
+		comment: null
+	$scope.captcha = null
+	$scope.getCaptcha = ->
+		$http.post 'comment/start?howmany=5'
+		.success (data)->
+			$scope.captcha = data
+			$scope.captcha.src = 'image'
+		.error (data)->
+			console.log 'error captcah', data
+	$scope.getCaptcha()
+
+	$scope.playCaptcha = ->
+		$scope.captcha.answer = null
+		$scope.captcha.src = 'audio'
+		# We need this for refreshing
+		$('#captchaAudio', $element)[0].load()
+		$('#captchaAudio', $element)[0].play()
+
+	$scope.postComment = (event, valid)->
+		event.preventDefault()
+		$scope.captcha.error = false
+		$scope.commentForm.error = false
+		if not valid
+			return false
+
+		if not $scope.captcha.answer
+			$scope.captcha.error = true
+			return false
+
+
+		reply =
+			src: $scope.captcha.src
+			comment: $scope.comment
+		if $scope.captcha.src is 'image'
+			reply[$scope.captcha.imageFieldName] = $scope.captcha.answer or false
+		else if $scope.captcha.src is 'audio'
+			reply[$scope.captcha.audioFieldName] = $scope.captcha.answer or false
+		else
+			return $scope.captcha.error = true
+
+		$scope.commentForm.sending = true
+		$.post '/comment/validate', reply
+		.done (data)->
+			$scope.safeApply ->
+				# reset everything
+				$scope.commentForm.thanks = true
+				$scope.captcha.error = false
+				$scope.commentForm.sending = false
+				$scope.commentForm.$setPristine()
+				$scope.commentForm.$setUntouched()
+				$scope.getCaptcha()
+				$scope.comment =
+					name: null
+					email: null
+					comment: null
+		.fail (data)->
+			$scope.safeApply ->
+				if data.status is 403
+					$scope.captcha.error = true
+				else
+					$scope.captcha.error = false
+					$scope.commentForm.error = true
+				$scope.commentForm.sending = false
+
+	$scope.comments = []
+	$http.get '/comment'
+	.success (data)->
+		$scope.comments = data
+		console.log 'comment', $scope.comments
+	# When a new comment is added
+	io.socket.on 'new_comment', (msg)->
+		$scope.safeApply ->
+			$scope.comments.unshift(msg)
 		
 ]
