@@ -178,5 +178,10 @@ studentLoans.controller 'AnnihilateCtrl', ['$scope', '$element', '$http'
 	io.socket.on 'new_comment', (msg)->
 		$scope.safeApply ->
 			$scope.comments.unshift(msg)
+
+	$scope.goTo = (id)->
+		$('html, body').animate
+			scrollTop: $('#'+id).offset().top
+		, 500
 		
 ]
