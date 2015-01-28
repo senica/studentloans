@@ -1,12 +1,20 @@
 <div ng-controller="AnnihilateCtrl">
     <div id="header">
-        <div class="loading-wrapper">
+        <video id="splashvideo" ng-show="playing">
+            <source src="/videos/student_loans_amy_senica.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="loading-wrapper"
+        ng-if="!canPlay">
             <div class="loading">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
             <div>loading video</div>
+        </div>
+        <div ng-if="canPlay && !playing" class="canplay" ng-click="play()">
+         <i class="fa fa-play-circle-o"></i> Play Video Message
         </div>
         <a href="#" class="help" ng-click="goTo('give')"></a>
     </div>

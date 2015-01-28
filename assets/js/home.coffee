@@ -1,5 +1,6 @@
-studentLoans.controller 'AnnihilateCtrl', ['$scope', '$element', '$http'
-($scope, $element, $http)->
+studentLoans.controller 'AnnihilateCtrl', ['$scope', '$element', '$http',
+'$window',
+($scope, $element, $http, $window)->
 	
 	$scope.safeApply = (fn)->
 		phase = @$root.$$phase
@@ -183,5 +184,27 @@ studentLoans.controller 'AnnihilateCtrl', ['$scope', '$element', '$http'
 		$('html, body').animate
 			scrollTop: $('#'+id).offset().top
 		, 500
+
+	# video
+	$('#splashvideo').on 'canplaythrough', ->
+		$scope.safeApply ->
+			$scope.canPlay = true
+	.on 'timeupdate', ->
+		if this.currentTime > 122.750841
+			this.currentTime = 0
+			this.pause()
+			$scope.safeApply ->
+				$scope.playing = false
+
+	$scope.play = ->
+		$scope.playing = true
+		$('#splashvideo')[0].play()
+
+	$($window).on 'scroll', ->
+		if $($window).scrollTop() > $($window).height() / 2
+			$('#splashvideo')[0].pause()
+		else if $scope.playing
+			$('#splashvideo')[0].play()
+
 		
 ]
