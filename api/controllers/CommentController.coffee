@@ -3,7 +3,6 @@
  # @description :: Server-side logic for managing comments
  # @help        :: See http://links.sailsjs.org/docs/controllers
 
-captcha = null
 mailer = require('nodemailer')
 transporter = mailer.createTransport(sails.config.email)
 
@@ -28,15 +27,13 @@ comment = (res, comment)->
 
 module.exports =
 	start: (req, res)->
-		captcha = require('visualcaptcha')(req.session)
+		captcha = require('visualcaptcha')(req.session, req.sessionID)
 		captcha.generate(req.query.howmany)
 		res.json 200, captcha.getFrontendData()
 
 	# Send in the index of the array (1, 2, 3)
 	image: (req, res)->
-		console.log req.body
-		if not captcha
-			return res.json 400, {}
+		captcha = require('visualcaptcha')(req.session, req.sessionID)
 		retina = false
 		if req.query.retina
 			retina = true
@@ -45,6 +42,7 @@ module.exports =
 
 	# Get audio
 	audio: (req, res)->
+		captcha = require('visualcaptcha')(req.session, req.sessionID)
 		if req.query.type isnt 'ogg'
 			req.query.type = 'mp3'
 
@@ -54,6 +52,7 @@ module.exports =
 		if not req.body.src
 			return res.send 403
 
+		captcha = require('visualcaptcha')(req.session, req.sessionID)
 		valid = captcha.getFrontendData()
 		if not valid
 			return res.send 403
