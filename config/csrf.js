@@ -25,7 +25,7 @@
  *			</form>
  *
  * or (b)	For AJAX/Socket-heavy and/or single-page apps:
- *			Sending a GET request to the `/csrfToken` route, where it will be returned
+ *			Sending a GET request teo the `/csrfToken` route, wher it will be returned
  *			as JSON, e.g.:
  *			{ _csrf: 'ajg4JD(JGdajhLJALHDa' }
  *
@@ -58,7 +58,7 @@
 *                                                                           *
 ****************************************************************************/
 
-// module.exports.csrf = {
-//    grantTokenViaAjax: true,
-//    origin: ''
-// }
+module.exports.csrf = {
+	grantTokenViaAjax: false, // this is passed into the layout view
+	origin: require('./local.js').hosts
+}

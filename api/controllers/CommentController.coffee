@@ -26,6 +26,9 @@ comment = (res, comment)->
 		return res.send 200, msg
 
 module.exports =
+	index: (req, res)->
+		Comment.find().exec (err, results)->
+			res.json 200, results
 	start: (req, res)->
 		captcha = require('visualcaptcha')(req.session, req.sessionID)
 		captcha.generate(req.query.howmany)

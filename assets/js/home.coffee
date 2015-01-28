@@ -2,6 +2,9 @@ studentLoans.controller 'AnnihilateCtrl', ['$scope', '$element', '$http',
 '$window',
 ($scope, $element, $http, $window)->
 	
+	csrf = $('html').attr('csrf')
+	console.log csrf
+
 	$scope.safeApply = (fn)->
 		phase = @$root.$$phase
 		if(phase == '$apply' or phase == '$digest')
@@ -21,7 +24,7 @@ studentLoans.controller 'AnnihilateCtrl', ['$scope', '$element', '$http',
 	$scope.finish = (token)->
 		token.display_name = $scope.name
 		token.amount = $scope.amount
-		$http.post '/gift/create', {token: token}
+		$http.post '/gift/create', {token: token, _csrf:csrf}
 		.success (data)->
 			$scope.thanks = true
 		.error (data)->
@@ -46,7 +49,7 @@ studentLoans.controller 'AnnihilateCtrl', ['$scope', '$element', '$http',
 	offset = -100
 	$scope.get_contributors = ->
 		offset += limit
-		$http.post '/gift/list', {limit:limit, offset: offset}
+		$http.get '/gift/list?limit='+limit+'&offset='+offset
 		.success (data)->
 			console.log data
 			$scope.contributors = data.rows or []
@@ -109,7 +112,7 @@ studentLoans.controller 'AnnihilateCtrl', ['$scope', '$element', '$http',
 		comment: null
 	$scope.captcha = null
 	$scope.getCaptcha = ->
-		$http.post 'comment/start?howmany=5'
+		$http.post 'comment/start?howmany=5&_csrf='+encodeURIComponent(csrf)
 		.success (data)->
 			$scope.captcha = data
 			$scope.captcha.src = 'image'
@@ -147,6 +150,7 @@ studentLoans.controller 'AnnihilateCtrl', ['$scope', '$element', '$http',
 			return $scope.captcha.error = true
 
 		$scope.commentForm.sending = true
+		reply._csrf = csrf
 		$.post '/comment/validate', reply
 		.done (data)->
 			$scope.safeApply ->

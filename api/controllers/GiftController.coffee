@@ -22,8 +22,8 @@ module.exports =
 			res.json { amount: amount }
 
 	list: (req, res)->
-		limit = req.param('limit') or 10
-		offset = req.param('offset') or 0
+		limit = req.query.limit or 10
+		offset = req.query.offset or 0
 		Gift.query 'SELECT id, display_name, amount FROM gift LIMIT ' + limit +
 		' OFFSET ' + offset, (err, results)->
 			if err

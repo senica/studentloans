@@ -34,7 +34,7 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
-  }
+  },
 
   /***************************************************************************
   *                                                                          *
@@ -45,5 +45,14 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
+
+  'GET /gift/total': 'GiftController.total',
+  'GET /gift/list': 'GiftController.list',
+  'POST /gift/create': 'GiftController.create',
+
+  'POST /comment/start': 'CommentController.start',
+  'GET /comment/image': 'CommentController.image',
+  'GET /comment/audio': 'CommentController.audio',
+  'POST /comment/validate': 'CommentController.validate',
 
 };
