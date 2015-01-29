@@ -63,7 +63,7 @@
         ${{end}}
     </div>
     <div id="wall">
-        <div class="item" ng-repeat="contrib in contributors | filter:{amount: '!null'}">
+        <div class="item" ng-repeat="contrib in contributors | filter:{amount: '!null', display_name: '!null'}">
             <div class="thanks">Thank you</div>
             <div>{{contrib.display_name || 'Anonymous'}}</div>
             <div>
