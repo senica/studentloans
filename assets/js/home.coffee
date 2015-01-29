@@ -32,7 +32,7 @@ studentLoans.controller 'AnnihilateCtrl', ['$scope', '$element', '$http',
 			console.log 'error', data
 
 	stripe = StripeCheckout.configure
-		key: 'pk_test_flg8p6jcpeJAytkqu4PqUOqI'
+		key: 'pk_live_pusY7MCitBQ9R9AKRLfrvQwL'
 		image: '/images/senicaamy.jpg'
 		token: (token)->
 			$scope.finish(token)
