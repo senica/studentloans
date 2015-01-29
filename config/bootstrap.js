@@ -15,7 +15,7 @@ module.exports.bootstrap = function(cb) {
 		console.log('Adding production server on port 80 for redirection.')
 		var express = require('express'), app = express();
 		app.get('*', function(req, res){
-			res.redirect('https://' + req.header.host + req.url);
+			res.redirect('https://' + req.headers.host + req.url);
 		}).listen(80);
 	}
 
