@@ -196,9 +196,11 @@ studentLoans.controller 'AnnihilateCtrl', ['$scope', '$element', '$http',
 			this.currentTime = 0
 			this.pause()
 			$scope.safeApply ->
+				$('#header').removeClass('playing')
 				$scope.playing = false
 
 	$scope.play = ->
+		$('#header').addClass('playing')
 		$scope.playing = true
 		$('#splashvideo')[0].play()
 
@@ -207,6 +209,18 @@ studentLoans.controller 'AnnihilateCtrl', ['$scope', '$element', '$http',
 			$('#splashvideo')[0].pause()
 		else if $scope.playing
 			$('#splashvideo')[0].play()
+
+
+	sizeHeader = ->
+		$('#header, #video').css
+			width: $($window).width()
+			height: $($window).width() * .66
+			'max-height': $($window).height()
+			'min-height': $($window).height * .35
+
+	sizeHeader()
+	$($window).on 'resize', sizeHeader
+
 
 		
 ]
