@@ -13,6 +13,12 @@ mail_options = {}
 	# text:
 	# html:
 
+if sails.config.environment is 'production'
+	stripe_secret = sails.config.stripe.live
+else
+	stripe_secret = sails.config.stripe.test
+stripe = require('stripe')(stripe_secret)
+
 module.exports =
 	total: (req, res)->
 		Gift.query 'SELECT SUM(amount) as amount FROM gift', (err, results)->
@@ -32,49 +38,66 @@ module.exports =
 
 	create: (req, res)->
 		token = req.param('token')
-		mail_options.to = 'senica@gmail.com'
-		mail_options.from = token.email or 'noreply@example.com'
-		Card.findOrCreate({id: token.card.id}, token.card).exec (err, card)->
-			if err
-				mail_options.subject = 'Error saving card'
-				mail_options.text = JSON.stringify(err) + JSON.stringify(token)
-				transporter.sendMail mail_options, (err, info)->
-					console.log 'Error saving card', err, info
 
-			token.card = (card or {}).id
-			Gift.create(token).exec (err, gift)->
+		token_id = (token or {}).id
+		environment = sails.config.environment
+		amount = ((token or {}).amount or 0) * 100
+		email = (token or {}).email
+		if token_id and amount and email
+			charge = stripe.charges.create
+				amount: amount
+				currency: 'usd'
+				card: token_id
+				description: email
+			, (err, charge)->
 				if err
-					mail_options.subject = 'Error saving gift'
-					mail_options.text = JSON.stringify(err) + JSON.stringify(token)
-					transporter.sendMail mail_options, (err, info)->
-						console.log 'Error saving gift', err, info
-				
-				mail_options =
-					from: 'senica@gmail.com'
-					to: token.email or 'senica@gmail.com'
-					subject: 'Thank you for your generosity!'
-					text: 'Thank you so much for taking the time out of your day \
-						and life to share with us and help us get out from under \
-						the pressure of student loan debt. Amy and I could never \
-						fully express our appreciation to you. Thank you! \
-						\r\n\r\n\
-						This email is auto generated. We\'ll thank you personally \
-						later.'
+					return res.send 402, 'There was a problem making the charge. Your card has not been charged.'
+				mail_options.to = 'senica@gmail.com'
+				mail_options.from = token.email or 'noreply@example.com'
+				Card.findOrCreate({id: token.card.id}, token.card).exec (err, card)->
+					if err
+						mail_options.subject = 'Error saving card'
+						mail_options.text = JSON.stringify(err) + JSON.stringify(token)
+						transporter.sendMail mail_options, (err, info)->
+							console.log 'Error saving card', err, info
 
-				transporter.sendMail mail_options, (err, info)->
-					console.log 'Saved!', err, info
+					token.card = (card or {}).id
+					Gift.create(token).exec (err, gift)->
+						if err
+							mail_options.subject = 'Error saving gift'
+							mail_options.text = JSON.stringify(err) + JSON.stringify(token)
+							transporter.sendMail mail_options, (err, info)->
+								console.log 'Error saving gift', err, info
+						
+						mail_options =
+							from: 'senica@gmail.com'
+							to: token.email or 'senica@gmail.com'
+							subject: 'Thank you for your generosity!'
+							text: 'Thank you so much for taking the time out of your day \
+								and life to share with us and help us get out from under \
+								the pressure of student loan debt. Amy and I could never \
+								fully express our appreciation to you. Thank you! \
+								\r\n\r\n\
+								This email is auto generated. We\'ll thank you personally \
+								later.'
 
-				mail_options =
-					to: 'senica@gmail.com'
-					from: token.email or 'senica@gmail.com'
-					subject: 'You received a new student loan gift'
-					text: 'Transmission' + JSON.stringify(token)
+						transporter.sendMail mail_options, (err, info)->
+							console.log 'Saved!', err, info
 
-				transporter.sendMail mail_options, (err, info)->
-					console.log 'Saved!', err, info
+						mail_options =
+							to: 'senica@gmail.com'
+							from: token.email or 'senica@gmail.com'
+							subject: 'You received a new student loan gift'
+							text: 'Transmission' + JSON.stringify(token)
 
-				sails.sockets.blast('new_gift', gift)
+						transporter.sendMail mail_options, (err, info)->
+							console.log 'Saved!', err, info
 
-				res.json gift
+						sails.sockets.blast('new_gift', gift)
+
+						res.json gift
+		else
+			res.send 402, 'Details received are not valid. \
+				Your card has not been charged.'
 
 

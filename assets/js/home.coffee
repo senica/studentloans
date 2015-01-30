@@ -3,7 +3,6 @@ studentLoans.controller 'AnnihilateCtrl', ['$scope', '$element', '$http',
 ($scope, $element, $http, $window)->
 	
 	csrf = $('html').attr('csrf')
-	console.log csrf
 
 	$scope.safeApply = (fn)->
 		phase = @$root.$$phase
@@ -27,12 +26,13 @@ studentLoans.controller 'AnnihilateCtrl', ['$scope', '$element', '$http',
 		$http.post '/gift/create', {token: token, _csrf:csrf}
 		.success (data)->
 			$scope.thanks = true
+			$scope.thanks_error = false
 		.error (data)->
-			$scope.thanks = true
-			console.log 'error', data
+			$scope.thanks_error = data
+			$scope.thanks = false
 
 	stripe = StripeCheckout.configure
-		key: 'pk_live_pusY7MCitBQ9R9AKRLfrvQwL'
+		key: 'pk_test_W2GshdeKYehyRdZEx0n4OVZp'
 		image: '/images/senicaamy.jpg'
 		token: (token)->
 			$scope.finish(token)
@@ -51,7 +51,6 @@ studentLoans.controller 'AnnihilateCtrl', ['$scope', '$element', '$http',
 		offset += limit
 		$http.get '/gift/list?limit='+limit+'&offset='+offset
 		.success (data)->
-			console.log data
 			$scope.contributors = data.rows or []
 	$scope.get_contributors()
 
@@ -178,7 +177,6 @@ studentLoans.controller 'AnnihilateCtrl', ['$scope', '$element', '$http',
 	$http.get '/comment'
 	.success (data)->
 		$scope.comments = data
-		console.log 'comment', $scope.comments
 	# When a new comment is added
 	io.socket.on 'new_comment', (msg)->
 		$scope.safeApply ->

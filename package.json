@@ -26,6 +26,7 @@
     "sails-disk": "~0.10.0",
     "sails-mongo": "^0.10.5",
     "sails-postgresql": "^0.10.13",
+    "stripe": "^3.1.0",
     "visualcaptcha": "^0.1.0"
   },
   "scripts": {
